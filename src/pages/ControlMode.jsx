@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Joystick } from "react-joystick-component";
-import { db } from "../firebase/config"; // Firebase setup
-import { ref, set, onValue } from "firebase/database";
+import { db, ref, set, onValue } from "../firebase/config";
 
 function ControlMode() {
   const [status, setStatus] = useState("Đang chờ lệnh...");

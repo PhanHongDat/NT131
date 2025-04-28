@@ -1,29 +1,10 @@
-import { useState } from "react";
-import Navbar from "./components/Navbar";
-import ControlMode from "./pages/ControlMode";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css'; // nếu bạn đang dùng file App.css thì sửa thành './App.css'
 
-function App() {
-  const [mode, setMode] = useState("control"); // "control" | "auto" | "follow"
-
-  const renderPage = () => {
-    switch (mode) {
-      case "control":
-        return <ControlMode />;
-      case "auto":
-        return <div className="p-8 text-2xl">Chế độ tự lái (Đang phát triển)</div>;
-      case "follow":
-        return <div className="p-8 text-2xl">Chế độ theo vật thể (Đang phát triển)</div>;
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div>
-      <Navbar setMode={setMode} />
-      {renderPage()}
-    </div>
-  );
-}
-
-export default App;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

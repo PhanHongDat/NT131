@@ -1,14 +1,7 @@
+// src/firebase/config.js
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAupIxSPwB5uo4u1-zZgKUiE1AV04vRdrA",
   authDomain: "carsignal-nt131.firebaseapp.com",
@@ -22,6 +15,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
-export const db = getDatabase(app);
-export { db };
+const db = getDatabase(app);
+
+// Export những gì cần thiết
+export { db, ref, set, onValue };
+
+
