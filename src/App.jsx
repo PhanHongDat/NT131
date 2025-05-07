@@ -1,17 +1,25 @@
-// src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";  // Navbar bạn đã có nè
+import Navbar from "./components/Navbar";
 import ControlMode from "./pages/ControlMode";
-// (sau sẽ thêm thêm AutoMode, FollowMode,...)
+import SensorData from "./components/SensorData.jsx";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<ControlMode />} /> {/* mặc định vào trang ControlMode */}
-        {/* Sau này thêm các chế độ khác tại đây */}
-      </Routes>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="md:col-span-2">
+            <Routes>
+              <Route path="/" element={<ControlMode />} />
+              {/* Thêm các route khác sau này */}
+            </Routes>
+          </div>
+          <div className="md:col-span-1">
+            <SensorData />
+          </div>
+        </div>
+      </div>
     </Router>
   );
 }
