@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ControlMode from "./pages/ControlMode";
 import SensorData from "./components/SensorData.jsx";
-
+import VoiceControl from "./pages/VoiceControl.jsx";
+import "./App.css";
+import './css/webstyle.css';
 function App() {
   return (
     <Router>
@@ -12,7 +14,8 @@ function App() {
           <div className="md:col-span-2">
             <Routes>
               <Route path="/" element={<ControlMode />} />
-              {/* Thêm các route khác sau này */}
+              <Route path="/controlmode" element={<ControlMode />} />
+              <Route path="/voice-control" element={<VoiceControl />} />
             </Routes>
           </div>
           <div className="md:col-span-1">

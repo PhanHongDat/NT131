@@ -1,3 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap');
+
+.pixel-frame {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 700; /* chữ đậm */
+  font-size: 1.5em; /* kích thước chữ */
+  color: #fff; /* màu chữ */
+  text-shadow: 1px 1px 0 #000; /* bóng chữ */
+  text-align: center; /* căn giữa chữ */
+}
+/* Thêm background cho body */
+body {
+  background-image: url("/images/background.jpg");
+  background-color: #39c6d0; /* Màu nền dự phòng */
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover; /* hoặc contain, cover, v.v. */
+  background-attachment: fixed; /* nếu muốn cố định */
+}
+/* Thêm background cho các nội dung*/
+.pixel-frame {
+  background-image: url('/images/buttonback.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 20px; /* hoặc điều chỉnh tùy khung */
+  margin: 20px 0;
+  color: white;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 1px 1px 0 #000;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

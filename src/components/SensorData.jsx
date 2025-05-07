@@ -1,7 +1,7 @@
 // src/components/SensorData.js
 import React, { useEffect, useState } from "react";
 import { db, ref, onValue } from "../firebase/config";
-
+import "../css/webstyle.css"; // Import your CSS file
 export default function SensorData() {
   const [data, setData] = useState({
     distance: 0,
@@ -36,13 +36,13 @@ export default function SensorData() {
   }, []);
 
   return (
-    <div className="mt-6 w-full max-w-md bg-white rounded-lg shadow p-4">
-      <h2 className="text-xl font-semibold mb-2">🚘 Dữ liệu cảm biến</h2>
-      <p>📏 Khoảng cách: {data.distance.toFixed(2)} cm</p>
-      <p>🛑 Gần vật thể: {data.tooClose ? "Có" : "Không"}</p>
-      <p>⬅️ Vật cản trái: {data.leftObstacle ? "Có" : "Không"}</p>
-      <p>➡️ Vật cản phải: {data.rightObstacle ? "Có" : "Không"}</p>
-      <p>⚠️ Vật cản cả 2 bên: {data.bothObstacles ? "Có" : "Không"}</p>
+<div className="mt-6 w-full max-w-md bg-white rounded-lg shadow p-4">
+  <h2 className="text-xl font-semibold mb-2">Dữ liệu cảm biến</h2>
+  <div className="pixel-frame">Khoảng cách: {data.distance.toFixed(2)} cm</div>
+  <div className="pixel-frame">Gần vật thể: {data.tooClose ? "Có" : "Không"}</div>
+  <div className="pixel-frame">Vật cản trái: {data.leftObstacle ? "Có" : "Không"}</div>
+  <div className="pixel-frame">Vật cản phải: {data.rightObstacle ? "Có" : "Không"}</div>
+  <div className="pixel-frame">Vật cản cả 2 bên: {data.bothObstacles ? "Có" : "Không"}</div>
     </div>
   );
 }

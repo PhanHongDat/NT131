@@ -19,15 +19,15 @@ function ControlMode() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Chế độ điều khiển</h1>
-
-      <div className="flex flex-col items-center gap-6">
+      <h1 className="text-frame">Chế độ điều khiển</h1>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Joystick
           size={100}
           baseColor="lightgray"
-          stickColor="blue"
+          stickColor="red"
           move={handleMove}
           stop={handleStop}
+          
         />
 
         <button
