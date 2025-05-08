@@ -22,7 +22,7 @@ function ControlMode() {
       <h1 className="text-frame">Chế độ điều khiển</h1>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Joystick
-          size={100}
+          size={150}
           baseColor="lightgray"
           stickColor="red"
           move={handleMove}

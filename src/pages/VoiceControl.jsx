@@ -51,7 +51,7 @@ export default function VoiceControl() {
 
   return (
     <div className="p-8 flex flex-col items-center gap-6">
-      <h1 className="text-2xl font-bold">🎤 Điều khiển bằng giọng nói</h1>
+      <h1 className="text-frame">🎤 Điều khiển bằng giọng nói</h1>
 
       <button
         onClick={startListening}
@@ -61,7 +61,7 @@ export default function VoiceControl() {
       </button>
 
       <div className="mt-4 bg-white p-4 shadow rounded-md max-w-md w-full">
-        <p className="text-lg">🗣️ Lệnh nhận: <strong>{command}</strong></p>
+        <p className="texr-frame">🗣️ Lệnh nhận: <strong>{command}</strong></p>
         <p className="mt-2 text-gray-700">{status}</p>
       </div>
     </div>

@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import ControlMode from "./pages/ControlMode";
+import Navbar from "./components/Navbar.jsx";
+import ControlMode from "./pages/ControlMode.jsx";
 import SensorData from "./components/SensorData.jsx";
 import VoiceControl from "./pages/VoiceControl.jsx";
+import PictureControl from "./pages/PictureControl.jsx";
 import "./App.css";
 import './css/webstyle.css';
 function App() {
@@ -15,7 +16,8 @@ function App() {
             <Routes>
               <Route path="/" element={<ControlMode />} />
               <Route path="/controlmode" element={<ControlMode />} />
-              <Route path="/voice-control" element={<VoiceControl />} />
+              <Route path="/voicecontrol" element={<VoiceControl />} />
+              <Route path="/picturecontrol" element={<PictureControl />} />
             </Routes>
           </div>
           <div className="md:col-span-1">
