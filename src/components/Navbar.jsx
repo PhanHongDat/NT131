@@ -16,26 +16,8 @@ function Navbar() {
     <nav className="bg-gradient-to-r from-gray-800 to-gray-900 fixed w-full z-50 top-0 start-0 border-b border-gray-700 shadow-lg">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pt-2 pb-4 px-4">
         {/* Hamburger menu (mobile) */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          type="button"
-          className="md:hidden inline-flex items-center p-2 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200 ease-in-out"
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
+       
+        
 
         {/* Main menu */}
         <div

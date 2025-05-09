@@ -4,6 +4,7 @@ import ControlMode from "./pages/ControlMode.jsx";
 import SensorData from "./components/SensorData.jsx";
 import VoiceControl from "./pages/VoiceControl.jsx";
 import PictureControl from "./pages/PictureControl.jsx";
+import Map from "./components/Map.jsx";
 import "./App.css";
 import './css/webstyle.css';
 function App() {
@@ -19,6 +20,10 @@ function App() {
               <Route path="/voicecontrol" element={<VoiceControl />} />
               <Route path="/picturecontrol" element={<PictureControl />} />
             </Routes>
+            <div className="mt-6">
+              <Map />
+            </div>
+            <Map />
           </div>
           <div className="md:col-span-1">
             <SensorData />
