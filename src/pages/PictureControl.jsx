@@ -67,7 +67,7 @@ export default function ControlByImage() {
 
       const dataURL = canvasRef.current.toDataURL("image/jpeg");
       socket.send(dataURL);
-    }, 1000);
+    }, 500);
 
     return () => {
       isMounted = false;
@@ -77,11 +77,20 @@ export default function ControlByImage() {
       }
     };
   }, [connected, socket]);
-
+  function SendToFirebase(data){
+    if(data === "Không phát hiện tay"||data=="NONE"){
+      set(ref(db, "commands/direction"), "stop");
+    }else{
+      set(ref(db, "commands/direction"), data);
+    }
+  }
+  useEffect(() => {
+    SendToFirebase(result);
+  }, [result]);
   return (
     <div className="p-8 flex flex-col items-center gap-6">
       <h1 className="text-frame">
-        📷 Điều khiển bằng hình ảnh
+        Điều khiển bằng hình ảnh
       </h1>
 
       <div className="relative border-4 border-red-500 rounded-lg overflow-hidden shadow-lg">
@@ -90,7 +99,7 @@ export default function ControlByImage() {
       </div>
 
       <div className="mt-4 bg-white p-4 shadow rounded-md max-w-md w-full space-y-2">
-        <p className="text-frame">🧠 Kết quả nhận dạng: <strong>{result}</strong></p>
+        <p className="text-frame"> Kết quả nhận dạng: <strong>{result}</strong></p>
         <p className="text-gray-700">{status}</p>
       </div>
     </div>
