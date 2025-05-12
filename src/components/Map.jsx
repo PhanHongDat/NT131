@@ -4,56 +4,64 @@ import { db } from "../firebase/config";
 
 export default function VehiclePath() {
   const canvasRef = useRef(null);
-  const [position, setPosition] = useState({ x: 200, y: 200 });
-  const [lastTimestamp, setLastTimestamp] = useState(null);
-  const [direction, setDirection] = useState(null);
-  const velocity = 10; // cm/s, giả định
+  const positionRef = useRef({ x: 200, y: 200 }); // bắt đầu từ giữa canvas
+  const velocity = 5; // cm/s hoặc pixel/s tuỳ chỉnh scale phù hợp
 
   useEffect(() => {
-    const movementsRef = ref(db, "movements");
-    const ctx = canvasRef.current.getContext("2d");
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    // Clear canvas lần đầu
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 400, 400);
-    ctx.fillStyle = "blue";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Vẽ điểm bắt đầu
+    ctx.fillStyle = "green";
     ctx.beginPath();
-    ctx.arc(position.x, position.y, 3, 0, 2 * Math.PI);
+    ctx.arc(positionRef.current.x, positionRef.current.y, 3, 0, 2 * Math.PI);
     ctx.fill();
 
-    onValue(movementsRef, (snapshot) => {
+    const movementsRef = ref(db, "movements/latest");
+
+    const unsubscribe = onValue(movementsRef, (snapshot) => {
       const data = snapshot.val();
-      if (!data) return;
-      const keys = Object.keys(data).sort((a, b) => a - b);
+      if (!data || !data.t1 || !data.t2) return;
 
-      let prev = { ...position };
-      let currentTime = lastTimestamp || data[keys[0]].timestamp;
+      const { direction, timestamp } = data.t2;
+      const dt = data.t2.timestamp - data.t1.timestamp;
+      const distance = velocity * dt;
 
-      keys.forEach((key) => {
-        const { direction, timestamp } = data[key];
-        const dt = (timestamp - currentTime) / 1000;
-        const distance = velocity * dt;
+      const from = { ...positionRef.current };
+      const to = { ...from };
 
-        let next = { ...prev };
-        switch (direction) {
-          case "forward": next.y -= distance; break;
-          case "backward": next.y += distance; break;
-          case "left": next.x -= distance; break;
-          case "right": next.x += distance; break;
-          default: break;
-        }
+      switch (direction) {
+        case "FORWARD":  to.y -= distance; break;
+        case "BACKWARD": to.y += distance; break;
+        case "LEFT":     to.x -= distance; break;
+        case "RIGHT":    to.x += distance; break;
+        default: return;
+      }
 
-        ctx.strokeStyle = "red";
-        ctx.beginPath();
-        ctx.moveTo(prev.x, prev.y);
-        ctx.lineTo(next.x, next.y);
-        ctx.stroke();
+      // Vẽ đường đi
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
 
-        prev = next;
-        currentTime = timestamp;
-      });
+      // Chấm điểm đến
+      ctx.fillStyle = "blue";
+      ctx.beginPath();
+      ctx.arc(to.x, to.y, 3, 0, 2 * Math.PI);
+      ctx.fill();
 
-      setPosition(prev);
-      setLastTimestamp(currentTime);
+      // Cập nhật vị trí mới
+      positionRef.current = to;
     });
+
+    // Cleanup
+    return () => unsubscribe();
   }, []);
 
   return (

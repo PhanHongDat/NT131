@@ -5,11 +5,16 @@ export default function ControlByImage() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
-  const [status, setStatus] = useState("🔌 Đang kết nối WebSocket...");
+  const [status, setStatus] = useState("Đang kết nối WebSocket...");
   const [result, setResult] = useState("Chưa phát hiện");
   const [connected, setConnected] = useState(false);
   const [socket, setSocket] = useState(null);
-
+  // Thiết lập Id
+  function IDFunction()
+  {
+    console.log("Chế độ điều khiển bằng hình ảnh");
+    set(ref(db, "ID/"),"picturecontrol");
+  }
   // Thiết lập WebSocket khi mount
   useEffect(() => {
     const ws = new WebSocket("ws://127.0.0.1:5000/ws");
@@ -56,7 +61,7 @@ export default function ControlByImage() {
         stream.getTracks().forEach(track => track.stop());
       }
     });
-
+    
     const interval = setInterval(() => {
       if (!videoRef.current || !canvasRef.current || !connected || !socket) return;
 
@@ -85,6 +90,7 @@ export default function ControlByImage() {
     }
   }
   useEffect(() => {
+    IDFunction();
     SendToFirebase(result);
   }, [result]);
   return (

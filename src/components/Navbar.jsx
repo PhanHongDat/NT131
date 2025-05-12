@@ -16,8 +16,6 @@ function Navbar() {
     <nav className="bg-gradient-to-r from-gray-800 to-gray-900 fixed w-full z-50 top-0 start-0 border-b border-gray-700 shadow-lg">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pt-2 pb-4 px-4">
         {/* Hamburger menu (mobile) */}
-       
-        
 
         {/* Main menu */}
         <div
