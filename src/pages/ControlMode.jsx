@@ -18,7 +18,7 @@ function ControlMode() {
   useEffect(() => {
     functionID();
   }, []);
-  
+
   function handleStop() {
     console.log("Stopping");
     setStatus("Đã dừng xe");
@@ -30,7 +30,7 @@ function ControlMode() {
     {
       case "ArrowUP":
       case "W":
-      case "w":
+      case "w": 
       set(ref(db, "commands/direction"), "FOROWARD");
       break;
       case "ArrowDOWN":
@@ -70,7 +70,6 @@ function ControlMode() {
     <div className="p-4">
       <h1 className="text-frame">Chế độ điều khiển</h1>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        functionID();
         <Joystick
           size={150}
           baseColor="lightgray"
