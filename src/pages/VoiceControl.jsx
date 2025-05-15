@@ -36,11 +36,11 @@
 
     const handleCommand = (speech) => {
       let direction = "";
-      if (speech.includes("tiến")) direction = "forward";
-      else if (speech.includes("lùi")) direction = "backward";
+      if (speech.includes("tiến"||"tới"||"thằng")) direction = "forward";
+      else if (speech.includes("lùi"||"lui")) direction = "backward";
       else if (speech.includes("trái")) direction = "left";
       else if (speech.includes("phải")) direction = "right";
-      else if (speech.includes("dừng")) direction = "stop";
+      else if (speech.includes("dừng"||"đứng lại")) direction = "stop";
 
       if (direction) {
         set(ref(db, "commands/direction"), direction);

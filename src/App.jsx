@@ -25,7 +25,6 @@ function App() {
               <Route path="/objectfollow" element={<ObjectFollow />} />
             </Routes>
             <div className="mt-6">
-              <Map />
             </div>
           </div>
           <div className="mt-6">

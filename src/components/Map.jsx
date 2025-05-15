@@ -5,7 +5,7 @@ import { db } from "../firebase/config";
 export default function VehiclePath() {
   const canvasRef = useRef(null);
   const positionRef = useRef({ x: 200, y: 200 }); // bắt đầu từ giữa canvas
-  const velocity = 5; // cm/s hoặc pixel/s tuỳ chỉnh scale phù hợp
+  const velocity = 10; // cm/s hoặc pixel/s tuỳ chỉnh scale phù hợp
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -21,14 +21,14 @@ export default function VehiclePath() {
     ctx.arc(positionRef.current.x, positionRef.current.y, 3, 0, 2 * Math.PI);
     ctx.fill();
 
-    const movementsRef = ref(db, "movements/latest");
+    const movementsRef = ref(db, "movement/latest");
 
     const unsubscribe = onValue(movementsRef, (snapshot) => {
       const data = snapshot.val();
       if (!data || !data.t1 || !data.t2) return;
 
-      const { direction, timestamp } = data.t2;
-      const dt = data.t2.timestamp - data.t1.timestamp;
+      const { direction, time } = data.t1;
+      const dt = data.t1.time - data.t2.time;
       const distance = velocity * dt;
 
       const from = { ...positionRef.current };

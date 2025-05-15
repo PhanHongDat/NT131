@@ -14,7 +14,7 @@ export default function SensorData() {
   useEffect(() => {
     const sensorDataRef = ref(db, "/sensor_data");
     const sensorStateRef = ref(db, "/sensors");
-
+    const systemDataRef = ref(db, "/system");
     onValue(sensorDataRef, (snapshot) => {
       const val = snapshot.val();
       setData((prev) => ({
@@ -33,11 +33,19 @@ export default function SensorData() {
         bothObstacles: val?.both_obstacles || false,
       }));
     });
+    onValue(systemDataRef, (snapshot) => {
+      const val = snapshot.val();
+      setData((prev) => ({
+        ...prev,
+        connected_at: val?.connected_at || "Chưa kết nối",
+      }));
+    });
   }, []);
 
   return (
-<div className="mt-6 w-full max-w-md bg-white rounded-lg shadow p-4">
-  <h2 className="text-xl font-semibold mb-2">Dữ liệu cảm biến</h2>
+    <div className="mt-6 w-full max-w-md bg-white rounded-lg shadow p-4">
+      <h2 className="text-xl font-semibold mb-2">Dữ liệu cảm biến</h2>
+      <div className="pixel-frame">Trạng thái kết nối: {data.connected_at}</div>
   <div className="pixel-frame">Khoảng cách: {data.distance.toFixed(2)} cm</div>
   <div className="pixel-frame">Gần vật thể: {data.tooClose ? "Có" : "Không"}</div>
   <div className="pixel-frame">Vật cản trái: {data.leftObstacle ? "Có" : "Không"}</div>
