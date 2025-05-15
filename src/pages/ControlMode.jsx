@@ -31,7 +31,7 @@ function ControlMode() {
       case "ArrowUP":
       case "W":
       case "w": 
-      set(ref(db, "commands/direction"), "FOROWARD");
+      set(ref(db, "commands/direction"), "FORWARD");
       break;
       case "ArrowDOWN":
       case "S":

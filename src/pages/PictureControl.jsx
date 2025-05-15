@@ -9,13 +9,14 @@ export default function ControlByImage() {
   const [result, setResult] = useState("Chưa phát hiện");
   const [connected, setConnected] = useState(false);
   const [socket, setSocket] = useState(null);
-  // Thiết lập Id
-  function IDFunction()
-  {
+
+  // Thiết lập ID
+  function IDFunction() {
     console.log("Chế độ điều khiển bằng hình ảnh");
-    set(ref(db, "ID/"),"picturecontrol");
+    set(ref(db, "ID/"), "picturecontrol");
   }
-  // Thiết lập WebSocket khi mount
+
+  // Kết nối WebSocket khi mount
   useEffect(() => {
     const ws = new WebSocket("ws://127.0.0.1:5000/ws");
 
@@ -50,6 +51,7 @@ export default function ControlByImage() {
   // Truy cập camera và gửi ảnh định kỳ
   useEffect(() => {
     let isMounted = true;
+
     navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
       if (isMounted) {
         streamRef.current = stream;
@@ -57,11 +59,10 @@ export default function ControlByImage() {
           videoRef.current.srcObject = stream;
         }
       } else {
-        // Nếu đã unmount, dừng stream ngay lập tức
-        stream.getTracks().forEach(track => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
       }
     });
-    
+
     const interval = setInterval(() => {
       if (!videoRef.current || !canvasRef.current || !connected || !socket) return;
 
@@ -77,27 +78,36 @@ export default function ControlByImage() {
     return () => {
       isMounted = false;
       clearInterval(interval);
+
       if (streamRef.current) {
-        streamRef.current.getTracks().forEach(track => track.stop());
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+      }
+
+      if (videoRef.current) {
+        videoRef.current.srcObject = null;
       }
     };
   }, [connected, socket]);
-  function SendToFirebase(data){
-    if(data === "Không phát hiện tay"||data=="NONE"){
+
+  // Gửi lệnh điều khiển lên Firebase
+  function SendToFirebase(data) {
+    if (data === "Không phát hiện tay" || data === "NONE") {
       set(ref(db, "commands/direction"), "stop");
-    }else{
+    } else {
       set(ref(db, "commands/direction"), data);
     }
   }
+
+  // Gửi ID và lệnh khi kết quả thay đổi
   useEffect(() => {
     IDFunction();
     SendToFirebase(result);
   }, [result]);
+
   return (
     <div className="p-8 flex flex-col items-center gap-6">
-      <h1 className="text-frame">
-        Điều khiển bằng hình ảnh
-      </h1>
+      <h1 className="text-frame">Điều khiển bằng hình ảnh</h1>
 
       <div className="relative border-4 border-red-500 rounded-lg overflow-hidden shadow-lg">
         <video ref={videoRef} autoPlay muted className="w-[360px] h-[270px] bg-black" />
@@ -105,7 +115,9 @@ export default function ControlByImage() {
       </div>
 
       <div className="mt-4 bg-white p-4 shadow rounded-md max-w-md w-full space-y-2">
-        <p className="text-frame"> Kết quả nhận dạng: <strong>{result}</strong></p>
+        <p className="text-frame">
+          Kết quả nhận dạng: <strong>{result}</strong>
+        </p>
         <p className="text-gray-700">{status}</p>
       </div>
     </div>
