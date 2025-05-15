@@ -11,11 +11,13 @@
 /* Thêm background cho body */
 body {
   background-image: url("/images/background.jpg");
-  background-color: #39c6d0; /* Màu nền dự phòng */
+  background-color: #39c6d0; 
   background-repeat: no-repeat;
   background-position: top left;
-  background-size: cover; /* hoặc contain, cover, v.v. */
-  background-attachment: flex; /* nếu muốn cố định */
+  background-size: cover; 
+  background-attachment: fixed; 
+  min-height: 100vh;
+  margin: 0;
 }
 /* Thêm background cho các nội dung*/
 .pixel-frame {
