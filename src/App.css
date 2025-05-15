@@ -13,11 +13,13 @@ body {
   background-image: url("/images/background.jpg");
   background-color: #39c6d0; 
   background-repeat: no-repeat;
-  background-position: top left;
+  background-position: center center;
   background-size: cover; 
-  background-attachment: scroll; 
+  background-attachment: fixed; 
   min-height: 100vh;
   margin: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 /* Thêm background cho các nội dung*/
 .pixel-frame {
@@ -72,4 +74,33 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+/* Media queries cho các thiết bị khác nhau */
+@media screen and (max-width: 768px) {
+  body {
+    background-position: center center;
+    background-attachment: scroll;
+  }
+  
+  #root {
+    padding: 1rem;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    background-position: center center;
+  }
+  
+  .pixel-frame {
+    font-size: 1.2em;
+    padding: 15px;
+    margin: 10px 0;
+  }
+  
+  #root {
+    padding: 0.5rem;
+  }
 }
