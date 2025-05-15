@@ -15,7 +15,7 @@ body {
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover; /* hoặc contain, cover, v.v. */
-  background-attachment: fixed; /* nếu muốn cố định */
+  background-attachment: flex; /* nếu muốn cố định */
 }
 /* Thêm background cho các nội dung*/
 .pixel-frame {
