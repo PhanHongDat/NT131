@@ -7,6 +7,7 @@ const menuItems = [
   { label: "Chế độ tự lái", href: "/automode" },
   { label: "Chế độ điều khiển bằng ảnh", href: "/picturecontrol" },
   { label: "Điều khiển giọng nói", href: "/voicecontrol" },
+  { label:"Chế độ đi theo vật thể", href:"/objectfollow" },
 ];
 
 function Navbar() {

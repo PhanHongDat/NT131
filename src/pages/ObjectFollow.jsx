@@ -5,7 +5,7 @@ import { db, ref, set } from "../firebase/config";
 function AutoMode() {
   // Hàm gửi ID lên Firebase khi vào trang
   function IDFunction() {
-    set(ref(db, "ID/"), "autocontrol");
+    set(ref(db, "ID/"), "objectfollow");
   }
 
   useEffect(() => {
@@ -14,9 +14,8 @@ function AutoMode() {
 
   return (
     <div className="p-4">
-      <h1 className="text-frame">Chế độ tự động lái</h1>
+      <h1 className="text-frame">Chế độ tự động đi theo vật thể</h1>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        {/* Nội dung sẽ thêm ở đây nếu cần */}
       </div>
     </div>
   );

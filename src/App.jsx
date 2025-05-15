@@ -6,6 +6,7 @@ import VoiceControl from "./pages/VoiceControl.jsx";
 import PictureControl from "./pages/PictureControl.jsx";
 import AutoMode from "./pages/AutoMode.jsx";
 import Map from "./components/Map.jsx";
+import ObjectFollow from "./pages/ObjectFollow.jsx";
 import "./App.css";
 import './css/webstyle.css';
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path="/voicecontrol" element={<VoiceControl />} />
               <Route path="/picturecontrol" element={<PictureControl />} />
               <Route path="/automode" element={<AutoMode />} />
+              <Route path="/objectfollow" element={<ObjectFollow />} />
             </Routes>
             <div className="mt-6">
               <Map />
