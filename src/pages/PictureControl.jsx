@@ -18,7 +18,7 @@ export default function ControlByImage() {
 
   // Kết nối WebSocket khi mount
   useEffect(() => {
-    const ws = new WebSocket("ws://0.0.0.0:5000/ws");
+    const ws = new WebSocket("ws://127.0.0.1:5000/ws");
 
     ws.onopen = () => {
       setStatus("✅ Đã kết nối WebSocket");

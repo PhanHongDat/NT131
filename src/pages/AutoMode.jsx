@@ -1,4 +1,3 @@
-// src/pages/VoiceControl.jsx hoặc AutoMode.jsx
 import React, { useEffect } from "react";
 import { db, ref, set } from "../firebase/config";
 
@@ -16,7 +15,6 @@ function AutoMode() {
     <div className="p-4">
       <h1 className="text-frame">Chế độ tự động lái</h1>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        {/* Nội dung sẽ thêm ở đây nếu cần */}
       </div>
     </div>
   );

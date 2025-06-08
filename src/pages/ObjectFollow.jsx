@@ -1,4 +1,3 @@
-// src/pages/VoiceControl.jsx hoặc AutoMode.jsx
 import React, { useEffect } from "react";
 import { db, ref, set } from "../firebase/config";
 
